@@ -30,7 +30,7 @@
         "notes": "Disponible para desarrollos de gran diámetro, alta carga y condiciones industriales exigentes. Puede incluir tratamiento térmico según el tipo de trabajo requerido.",
         "image": {
           "type": "image",
-          "src": "/media/products/resorteria-pesada.jpg",
+          "src": "/media/products/resorteria-pesada.png",
           "alt": "Resorte industrial pesado fabricado por JC Resortes"
         },
         "photos": [
@@ -52,11 +52,6 @@
           {
             "type": "image",
             "src": "/media/products/resorteria-pesada-04.webp",
-            "alt": "Resorte industrial pesado fabricado por JC Resortes"
-          },
-          {
-            "type": "image",
-            "src": "/media/products/resorteria-pesada-05.webp",
             "alt": "Resorte industrial pesado fabricado por JC Resortes"
           },
           {
@@ -86,18 +81,13 @@
         "notes": "Se recomienda definir diámetro del alambre, largo total, tipo de gancho, distancia entre puntos de anclaje y nivel de tensión requerido.",
         "image": {
           "type": "image",
-          "src": "/media/products/resorte-bandas-motos.jpg",
+          "src": "/media/products/resorte-bandas-motos-01.png",
           "alt": "Resorte para bandas de motos fabricado por JC Resortes"
         },
         "photos": [
           {
             "type": "image",
             "src": "/media/products/resorte-bandas-motos-01.png",
-            "alt": "Resorte para bandas de motos fabricado por JC Resortes"
-          },
-          {
-            "type": "image",
-            "src": "/media/products/resorte-bandas-motos-02.jpg",
             "alt": "Resorte para bandas de motos fabricado por JC Resortes"
           }
         ]
@@ -124,7 +114,7 @@
         "notes": "Se fabrica según el ángulo de trabajo, sentido de enrollado, longitud y geometría de los brazos requeridos por el cliente.",
         "image": {
           "type": "image",
-          "src": "/media/products/resorte-torsion.jpg",
+          "src": "/media/products/resorte-torsion.png",
           "alt": "Resorte de torsión fabricado por JC Resortes"
         },
         "photos": [
@@ -193,7 +183,7 @@
         "notes": "Se recomienda definir diámetro del alambre, diámetro mayor y menor, largo total, número de vueltas y nivel de carga requerido para un diseño óptimo.",
         "image": {
           "type": "image",
-          "src": "/media/products/resorte-conico.jpg",
+          "src": "/media/products/resorte-conico-1.png",
           "alt": "Resorte cónico de compresión fabricado por JC Resortes"
         },
         "photos": [
@@ -228,7 +218,7 @@
         "notes": "Ideal para desarrollos personalizados. Se recomienda entregar muestra física, plano, medidas generales, función de la pieza y cantidad requerida.",
         "image": {
           "type": "image",
-          "src": "/media/products/formas-especiales-clips-grapas.jpg",
+          "src": "/media/products/formas-especiales-01.png",
           "alt": "Formas especiales en alambre, clips y grapas fabricadas por JC Resortes"
         },
         "photos": [
@@ -270,7 +260,7 @@
         "notes": "Puede fabricarse con gancho estándar, gancho movible, argolla o extremos personalizados según la necesidad del cliente.",
         "image": {
           "type": "image",
-          "src": "/media/products/resorte-tension-gancho-movible.jpg",
+          "src": "/media/products/resorte-tension-gancho-movible.png",
           "alt": "Resorte de tensión con gancho movible fabricado por JC Resortes"
         },
         "photos": [

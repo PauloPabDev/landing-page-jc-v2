@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Badge from '@/components/ui/Badge.astro';
+import { resolveImage } from '@/lib/images';
 
 interface Props {
   slug: string;
@@ -14,13 +16,21 @@ interface Props {
 }
 
 const { slug, title, industry, summary, tags, image } = Astro.props;
+const resolvedImage = image ? resolveImage(image.src) : null;
 ---
 
 <article class="group flex flex-col bg-white border border-muted rounded-lg overflow-hidden shadow-card hover:shadow-elevated transition-shadow">
 
   <!-- Case image / placeholder -->
   <a href={`/caso/${slug}`} class="block relative aspect-video overflow-hidden bg-surface" aria-label={`Ver caso: ${title}`} tabindex="-1">
-    {image ? (
+    {resolvedImage ? (
+      <Image
+        src={resolvedImage}
+        alt={image!.alt}
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+        loading="lazy"
+      />
+    ) : image ? (
       <img
         src={image.src}
         alt={image.alt}

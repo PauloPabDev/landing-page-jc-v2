@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getImage } from "astro:assets";
 import {
   getHomePageData,
   getProductsData,
   buildWhatsAppUrl,
 } from "@/lib/content";
+import { resolveImage } from "@/lib/images";
 
 import Header from "@/components/sections/Header.astro";
 import PageHero from "@/components/ui/PageHero.astro";
@@ -48,6 +50,27 @@ interface Props {
 
 const { product, allProducts } = Astro.props;
 const { settings, contact } = await getHomePageData();
+
+// Pre-procesar las fotos del producto para obtener rutas /_astro/... optimizadas.
+// Esto permite que los <img> planos del overlay y las miniaturas usen imágenes
+// procesadas por Astro incluso cuando el src se asigna dinámicamente por JS.
+interface ResolvedPhoto {
+  type: string;
+  src: string;
+  alt: string;
+  caption?: string;
+  resolvedSrc: string;
+}
+const resolvedPhotos: ResolvedPhoto[] = await Promise.all(
+  (product.photos ?? []).map(async (photo: { type: string; src: string; alt: string; caption?: string }) => {
+    const meta = resolveImage(photo.src);
+    if (meta) {
+      const opt = await getImage({ src: meta, format: "webp", quality: 80 });
+      return { ...photo, resolvedSrc: opt.src };
+    }
+    return { ...photo, resolvedSrc: photo.src };
+  })
+);
 
 const whatsappMessage = `Hola, quiero solicitar una solución para ${product.name.toLowerCase()}`;
 const whatsappUrl = buildWhatsAppUrl(settings.whatsapp.number, whatsappMessage);
@@ -136,7 +159,7 @@ const breadcrumbSchema = {
               />
 
               <!-- Overlay de foto — se muestra sobre el canvas al seleccionar una miniatura -->
-              {product.photos && product.photos.length > 0 && (
+              {resolvedPhotos.length > 0 && (
                 <div
                   id={`overlay-${product.id}`}
                   class="absolute inset-0 rounded-3xl overflow-hidden bg-white flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
@@ -154,7 +177,7 @@ const breadcrumbSchema = {
             </div>
 
             <!-- Strip de miniaturas (3D + fotos) -->
-            {product.photos && product.photos.length > 0 && (
+            {resolvedPhotos.length > 0 && (
               <div
                 class="jc-thumb-strip flex gap-2 overflow-x-auto py-1 px-0.5"
                 role="list"
@@ -188,7 +211,7 @@ const breadcrumbSchema = {
                 </button>
 
                 <!-- Miniaturas de fotos -->
-                {product.photos.map((photo, i) => (
+                {resolvedPhotos.map((photo, i) => (
                   <button
                     type="button"
                     role="listitem"
@@ -197,11 +220,11 @@ const breadcrumbSchema = {
                     aria-pressed="false"
                     data-for={product.id}
                     data-type="photo"
-                    data-src={photo.src}
+                    data-src={photo.resolvedSrc}
                     data-alt={photo.alt}
                   >
                     <img
-                      src={photo.src}
+                      src={photo.resolvedSrc}
                       alt=""
                       class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.08]"
                       loading="lazy"
@@ -401,7 +424,7 @@ const breadcrumbSchema = {
 </style>
 
 <!-- ── Script de interacción: cambio entre 3D y fotos ──────── -->
-<script is:inline define:vars={{ productId: product.id, productPhotos: product.photos ?? [] }}>
+<script is:inline define:vars={{ productId: product.id, productPhotos: resolvedPhotos }}>
   (function () {
     if (!productPhotos || productPhotos.length === 0) return;
 
