@@ -1,4 +1,4 @@
-import { defineConfig, sharpImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
@@ -62,10 +62,6 @@ export default defineConfig({
       },
     }),
   ],
-
-  image: {
-    service: sharpImageService(),
-  },
 
   build: {
     format: 'directory',

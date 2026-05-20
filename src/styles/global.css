@@ -258,14 +258,3 @@
   .product-card { transition: none !important; }
   .hero-grid-plane { animation: none !important; }
 }
-
-/* Mobile — disable non-essential animations on small screens */
-@media (max-width: 767px) {
-  .animate-hero-grid,
-  .animate-float,
-  .animate-float-slow,
-  .animate-glow-pulse,
-  .hero-grid-plane {
-    animation: none !important;
-  }
-}
