@@ -85,6 +85,8 @@ const isSingleMedia = hasMedia && media.type !== 'gallery';
               class="w-full h-full object-cover"
               loading={(media as MediaItem).priority ? 'eager' : 'lazy'}
               decoding="async"
+              width={aspect === 'square' ? 800 : aspect === 'portrait' ? 600 : 800}
+              height={aspect === 'square' ? 800 : aspect === 'portrait' ? 800 : 450}
             />
           )}
         </div>

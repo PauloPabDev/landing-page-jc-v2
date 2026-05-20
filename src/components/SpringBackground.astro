@@ -279,8 +279,10 @@ const { fogColor = "#1a1a18" } = Astro.props;
     distributeItems(); // position springs after aspect ratio is known
   }
 
-  // Initialize all spring background canvases on the page
-  document
-    .querySelectorAll<HTMLCanvasElement>("[data-spring-background]")
-    .forEach(initSpringBackground);
+  // Skip Three.js on mobile — CSS gradient background is sufficient
+  if (window.innerWidth >= 768) {
+    document
+      .querySelectorAll<HTMLCanvasElement>("[data-spring-background]")
+      .forEach(initSpringBackground);
+  }
 </script>

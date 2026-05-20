@@ -124,6 +124,7 @@ const keywords = s.seo.keywords?.join(', ') ?? '';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1A1A18" />
     <meta http-equiv="Content-Language" content="es" />
 
     <!-- Primary Meta -->
@@ -169,13 +170,26 @@ const keywords = s.seo.keywords?.join(', ') ?? '';
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Google Fonts — Montserrat (headings) + Inter (body) -->
+    <!-- Google Fonts — non-blocking (preload + print swap trick) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap"
     />
+    <link
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+      />
+    </noscript>
 
     <!-- Schema.org JSON-LD — LocalBusiness / ManufacturingBusiness -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
